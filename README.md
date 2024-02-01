@@ -8,29 +8,28 @@
 
 ## 📖 Table of Contents
 
-- [Project Overview](#project-overview)
-
-- [Prerequisites](#prerequisites)
-
-- [Getting Started](#getting-started)
-
-- [Database Migration and Seeding for Production](#database-migration-and-seeding-for-production)
-
-- [Database Configuration](#database-configuration)
-
-- [Database Schema](#database-schema)
-
-- [API Documentation](#api-documentation)
-
-- [Postman Collection](#postman-collection)
-
-- [Server Deployment](#server-deployment)
-
-- [Running Tests](#running-tests)
-
-- [Testing Scenarios](#testing-scenarios)
-
-- [Technologies Used](#technologies-used)
+- [👷 Project Management System API v.1.0](#-project-management-system-api-v10)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Prerequisites](#prerequisites)
+  - [Getting Started](#getting-started)
+  - [Database Migration and Seeding for Production](#database-migration-and-seeding-for-production)
+  - [Database Configuration](#database-configuration)
+    - [🔨 Development Configuration](#-development-configuration)
+    - [🧪 Test Configuration](#-test-configuration)
+    - [🌐 Production Configuration](#-production-configuration)
+  - [Database Schema](#database-schema)
+  - [API Documentation](#api-documentation)
+  - [Postman Collection](#postman-collection)
+  - [Server Deployment](#server-deployment)
+  - [Running Tests](#running-tests)
+  - [Testing Scenarios](#testing-scenarios)
+    - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
+    - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
+    - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
+    - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
+  - [Technologies Used](#technologies-used)
+    - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
 
 ## Project Overview
 
