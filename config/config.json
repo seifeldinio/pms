@@ -1,0 +1,46 @@
+{
+  "development": {
+    "username": "root",
+    "password": "admin1234",
+    "database": "pms_db",
+    "host": "localhost",
+    "port": "3308",
+    "dialect": "mysql",
+    "logging": true,
+    "dialectOptions": {
+      "charset": "utf8mb4"
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "admin1234",
+    "database": "pms_db",
+    "host": "localhost",
+    "port": "3308",
+    "dialect": "mysql",
+    "logging": false,
+    "dialectOptions": {
+      "charset": "utf8mb4"
+    }
+  },
+
+  "production": {
+    "username": "root",
+    "password": "pscale_pw_b7CuLmtFTwIs289gryxG7LI91Y46QxzrFlA0rhCsVc5",
+    "database": "bloxat",
+    "host": "aws.connect.psdb.cloud",
+    "port": "3306",
+    "dialect": "mysql",
+    "logging": false,
+    "define": {
+      "charset": "utf8mb4"
+    },
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      },
+      "charset": "utf8mb4"
+    },
+    "ssl": true
+  }
+}
