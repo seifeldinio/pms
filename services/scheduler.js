@@ -1,17 +1,15 @@
 const cron = require("node-cron");
 const { Op } = require("sequelize");
-const { Project, Client, SentEmail } = require("../models");
-const {
-  generateSharedLinkToken,
-  recordSentEmail,
-} = require("./projectService");
+const { Project, Client } = require("../models");
+const { recordSentEmail } = require("./projectService");
 const { sendReminderEmail } = require("./emailService");
 
 let cronJobPromise;
 
 const start = () => {
   cronJobPromise = new Promise((resolve) => {
-    cronJob = cron.schedule("0 0 * * *", async () => {
+    //     cronJob = cron.schedule("0 0 * * *", async () => {
+    cronJob = cron.schedule("0 21 * * *", async () => {
       try {
         const upcomingProjects = await Project.findAll({
           where: {
