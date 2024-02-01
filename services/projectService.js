@@ -29,11 +29,11 @@ const findUpcomingProjects = async () => {
 };
 
 // Function to generate a shared link token
-const generateSharedLinkToken = () => {
-  // Generate a UUID (version 4) as a shared link token
-  const token = uuidv4();
-  return token;
-};
+// const generateSharedLinkToken = () => {
+//   // Generate a UUID (version 4) as a shared link token
+//   const token = uuidv4();
+//   return token;
+// };
 
 // Function to record sent email
 const recordSentEmail = async (projectId, clientEmail, sharedLinkToken) => {
@@ -51,6 +51,6 @@ const recordSentEmail = async (projectId, clientEmail, sharedLinkToken) => {
 
 module.exports = {
   findUpcomingProjects,
-  generateSharedLinkToken,
+  // generateSharedLinkToken,
   recordSentEmail,
 };

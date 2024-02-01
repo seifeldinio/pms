@@ -7,18 +7,20 @@ const { sendReminderEmail } = require("./emailService");
 let cronJobPromise;
 
 const start = () => {
-  cronJobPromise = new Promise((resolve) => {
+  cronJobPromise = new Promise(async (resolve) => {
     cronJob = cron.schedule("0 0 * * *", async () => {
       try {
+        // console.log("Scheduler triggered at:", new Date());
+
         const today = new Date();
 
         // Find projects with start date equals to today
         const upcomingProjects = await Project.findAll({
           where: {
             startDate: {
-              [Op.eq]: today,
+              [Op.gte]: today,
             },
-            status: "Open",
+            // status: "Open",
           },
           include: [
             {
@@ -29,22 +31,13 @@ const start = () => {
           ],
         });
 
-        // const upcomingProjects = await Project.findAll({
-        //   where: {
-        //     startDate: { [Op.lt]: new Date() },
-        //     status: "Open",
-        //   },
-        //   include: [
-        //     {
-        //       model: Client,
-        //       as: "client",
-        //       attributes: ["email"],
-        //     },
-        //   ],
-        // });
+        // console.log("Upcoming projects for today:", upcomingProjects);
 
         for (const project of upcomingProjects) {
           const clientEmail = project.client.email;
+
+          // console.log("Sending email to:", clientEmail);
+          // console.log("Sending email for project:", project.name);
 
           await sendReminderEmail(
             clientEmail,

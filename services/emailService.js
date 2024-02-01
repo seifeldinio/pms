@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const {
   // findUpcomingProjects,
-  generateSharedLinkToken,
-  recordSentEmail,
+  // generateSharedLinkToken,
+  // recordSentEmail,
 } = require("./projectService");
 
 const transporter = nodemailer.createTransport({
@@ -24,7 +24,7 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000"; // Default to 
 
 async function sendReminderEmail(to, projectName, sharedLinkToken) {
   const subject = `${projectName} Start Reminder`;
-  const text = `Click the link to view the project details: ${BASE_URL}/api/v1/clients/${sharedLinkToken}`;
+  const text = `Click the link to view the project details: ${BASE_URL}api/v1/clients/${sharedLinkToken}`;
 
   const mailOptions = {
     from: "test@bloxat.app",

@@ -8,26 +8,26 @@
 
 ## 📖 Table of Contents
 
-  - [Project Overview](#project-overview)
-  - [✅ Prerequisites](#-prerequisites)
-  - [🚀 Getting Started](#-getting-started)
-  - [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
-  - [⚙️ Database Configuration](#️-database-configuration)
-    - [🔨 Development Configuration](#-development-configuration)
-    - [🧪 Test Configuration](#-test-configuration)
-    - [🌐 Production Configuration](#-production-configuration)
-  - [✨ Database Schema](#-database-schema)
-  - [📝 API Documentation](#-api-documentation)
-  - [📝 Postman Collection](#-postman-collection)
-  - [👉 Server Deployment](#-server-deployment)
-  - [🧪 Running Tests](#-running-tests)
-  - [🧪 Testing Scenarios](#-testing-scenarios)
-    - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
-    - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
-    - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
-    - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
-  - [Technologies Used](#technologies-used)
-    - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
+- [Project Overview](#project-overview)
+- [✅ Prerequisites](#-prerequisites)
+- [🚀 Getting Started](#-getting-started)
+- [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
+- [⚙️ Database Configuration](#️-database-configuration)
+  - [🔨 Development Configuration](#-development-configuration)
+  - [🧪 Test Configuration](#-test-configuration)
+  - [🌐 Production Configuration](#-production-configuration)
+- [✨ Database Schema](#-database-schema)
+- [📝 API Documentation](#-api-documentation)
+- [📝 Postman Collection](#-postman-collection)
+- [👉 Server Deployment](#-server-deployment)
+- [🧪 Running Tests](#-running-tests)
+- [🧪 Testing Scenarios](#-testing-scenarios)
+  - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
+  - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
+  - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
+  - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
+- [Technologies Used](#technologies-used)
+  - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
 
 ## Project Overview
 
@@ -103,19 +103,13 @@ npm install
 
 APP_PORT=3000
 
-
-
 NODE_ENV=production
 
-
+BASE_URL=https://pms-wkupx.ondigitalocean.app/
 
 JWT_SECRET=98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3
 
-
-
 SESSION_SECRET=1d3x0EV8rKgNgoknOf6KHQyeOGmeD20N
-
-
 
 MAIL_PASS=YmO&R~Ct&gB9;x<Qnq;5M7
 
