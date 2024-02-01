@@ -23,11 +23,10 @@
       "charset": "utf8mb4"
     }
   },
-
   "production": {
-    "username": "root",
-    "password": "pscale_pw_b7CuLmtFTwIs289gryxG7LI91Y46QxzrFlA0rhCsVc5",
-    "database": "bloxat",
+    "username": "0k3o7g7gahvbh2btt0f4",
+    "password": "pscale_pw_QLR6OWzwGH3QrwMlMVQ7BMYJPc9iv9JXQVV6NzY1Pfw",
+    "database": "pagejet-db",
     "host": "aws.connect.psdb.cloud",
     "port": "3306",
     "dialect": "mysql",
