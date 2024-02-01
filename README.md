@@ -8,22 +8,22 @@
 
 ## 📖 Table of Contents
 
-  - [Project Overview](#project-overview)
-  - [✅ Prerequisites](#-prerequisites)
-  - [🚀 Getting Started](#-getting-started)
-  - [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
-  - [✨ Database Schema](#-database-schema)
-  - [📝 API Documentation](#-api-documentation)
-  - [📝 Postman Collection](#-postman-collection)
-  - [👉 Server Deployment](#-server-deployment)
-  - [🧪 Running Tests](#-running-tests)
-  - [🧪 Testing Scenarios](#-testing-scenarios)
-    - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
-    - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
-    - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
-    - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
-  - [Technologies Used](#technologies-used)
-    - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
+- [Project Overview](#project-overview)
+- [✅ Prerequisites](#-prerequisites)
+- [🚀 Getting Started](#-getting-started)
+- [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
+- [✨ Database Schema](#-database-schema)
+- [📝 API Documentation](#-api-documentation)
+- [📝 Postman Collection](#-postman-collection)
+- [👉 Server Deployment](#-server-deployment)
+- [🧪 Running Tests](#-running-tests)
+- [🧪 Testing Scenarios](#-testing-scenarios)
+  - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
+  - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
+  - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
+  - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
+- [Technologies Used](#technologies-used)
+  - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
 
 ## Project Overview
 
@@ -46,57 +46,30 @@ This Project Management System API provides functionality for managing projects,
 1. **Clone the repository:**
 
 ```bash
-
-
-
 git clone https://github.com/seifeldinio/pms.git
-
-
-
 ```
 
 2. **Navigate to the project folder:**
 
 ```bash
-
-
-
 cd pms
-
-
-
 ```
 
 3. **Install dependencies using Yarn or npm:**
 
 ```bash
-
-
-
 yarn
-
-
-
 ```
 
 or using npm:
 
 ```bash
-
-
-
 npm install
-
-
-
 ```
 
 4. **Create a `.env` file in the root of the project and add the following configurations:**
 
 ```env
-
-
-
 APP_PORT=3000
 
 NODE_ENV=production
@@ -108,9 +81,6 @@ JWT_SECRET=98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3
 SESSION_SECRET=1d3x0EV8rKgNgoknOf6KHQyeOGmeD20N
 
 MAIL_PASS=YmO&R~Ct&gB9;x<Qnq;5M7
-
-
-
 ```
 
 Adjust this value as needed:
@@ -119,13 +89,11 @@ Adjust this value as needed:
 
 - To disable force synchronization: `NODE_ENV=production`
 
-
-
 5. 🐬 **Database configuration:**
 
 Before running the migrations, make sure to configure your database settings in the `config/config.json` file. Here's an example configuration for development, testing, and production environments:
 
-````json
+```json
 {
   "development": {
     "username": "root",
@@ -171,41 +139,35 @@ Before running the migrations, make sure to configure your database settings in 
     "ssl": true
   }
 }
-````
+```
 
+6. ✨ **Create Database:**
 
-6. 🐬 **Run database migrations:**
+Before running the migrations, you need to create the database. Use the following command:
 
 ```bash
+npx sequelize-cli db:create
+```
 
+7. 🐬 **Run database migrations:**
 
-
+```bash
 sequelize db:migrate
+```
 
-
-
-````
-
-7. **Seed the database with an admin user:**
+8. **Seed the database with an admin user:**
 
 ```bash
-
-
-
 sequelize db:seed --seed create-admin-user.js
-
-
-
 ```
 
 This command initializes your database with an admin user.
 
-👉 To authenticate and obtain a Bearer token, use the following credentials with a `POST` request to `/api/v1/auth/login`:
+Note: 👉 To authenticate and obtain a Bearer token, use the following credentials with a `POST` request to `/api/v1/auth/login`:
 
 ```json
 {
   "email": "admin@gmail.com",
-
   "password": "123456"
 }
 ```
@@ -214,54 +176,38 @@ Make sure to include these details in the body of your request.
 
 ⚠️ **Make sure to change the password immediately after logging in for security reasons.** (Password changing to be implemented in the future.)
 
-8. 🚀 **Start the application:**
+9. 🚀 **Start the application:**
 
 ```bash
-
-
-
 yarn start
-
-
-
 ```
 
 or using npm:
 
 ```bash
-
-
-
 npm start
-
-
-
 ```
 
-9. **Access the application at [http://localhost:3000](http://localhost:3000).**
+10. **Access the application at [http://localhost:3000](http://localhost:3000).**
+
+---
 
 ## 🐬 Database Migration and Seeding for Production
 
 To perform database migration and seeding using the production Sequelize configuration, follow these commands:
 
 ```bash
-
 npx sequelize-cli db:migrate --env production
-
 ```
 
 ```bash
-
 sequelize db:seed --seed create-admin-user.js --env production
-
 ```
 
 🚀 To start the application in production mode, execute:
 
 ```bash
-
 yarn start --production
-
 ```
 
 ---
@@ -289,37 +235,19 @@ yarn start --production
 Before running tests, make sure to set the `NODE_ENV` environment variable to `test` in the `.env` file. This ensures that the tests use the test environment configuration.
 
 ```bash
-
-
-
 NODE_ENV=test
-
-
-
 ```
 
 After setting the environment variable, start the application using:
 
 ```bash
-
-
-
 yarn start
-
-
-
 ```
 
 Ensure that the application is running correctly. Once the application is running, open a new terminal window and execute the following command to run the tests:
 
 ```bash
-
-
-
 yarn test
-
-
-
 ```
 
 This command will execute the tests and provide feedback on their success or failure. The testing environment is isolated, and breaking changes won't affect the production environment.
