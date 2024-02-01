@@ -1,6 +1,5 @@
 const express = require("express");
 const {
-  passport, // Add this line to import passport
   authenticateUser,
   generateToken,
 } = require("../middlewares/authentication");
@@ -45,6 +44,8 @@ router.post("/login", async (req, res) => {
 });
 
 module.exports = router;
+
+// SWAGGER DOCUMENTATION
 
 /**
  * @swagger

@@ -1,17 +1,8 @@
-const { Op } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
-const {
-  Project,
-  User,
-  ProjectAssignment,
-  Comment,
-  Client,
-  SentEmail,
-} = require("../models");
+const { Project, Client, SentEmail } = require("../models");
 const { sendReminderEmail } = require("../services/emailService");
 const { recordSentEmail } = require("../services/projectService");
 
-// Manually send email to client (Project started)
+// Manually send email to client (Project starting reminder)
 const manuallySendEmail = async (req, res) => {
   try {
     const projectId = req.params.projectId;
@@ -36,7 +27,7 @@ const manuallySendEmail = async (req, res) => {
     const projectName = project.name;
     const sharedLinkToken = project.sharedLinkToken;
 
-    // Send the manual email with a structure similar to the reminder email
+    // Send the email
     await sendReminderEmail(to, projectName, sharedLinkToken);
 
     // Record the sent email
@@ -49,7 +40,7 @@ const manuallySendEmail = async (req, res) => {
   }
 };
 
-// Controller function to get sent emails for a project
+// Get sent emails for a project
 const getSentEmailsForProject = async (req, res) => {
   // Pagination
   let page = parseInt(req.query.page);
@@ -78,8 +69,7 @@ const getSentEmailsForProject = async (req, res) => {
   }
 };
 
-// Get all sent emails to all clients
-// Controller function to get all sent emails
+// Get all sent emails
 const getAllSentEmails = async (req, res) => {
   // Pagination
   let page = parseInt(req.query.page);

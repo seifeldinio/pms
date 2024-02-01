@@ -1,5 +1,5 @@
 // Controllers for project-related operations
-const { Op, literal } = require("sequelize");
+const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const {
   Project,
@@ -7,17 +7,16 @@ const {
   ProjectAssignment,
   Comment,
   Client,
-  SentEmail,
 } = require("../models");
 
-// Function to create a new project
+// Create a new project
 const createProject = async (req, res) => {
   try {
     // Extract necessary information from the request body
     const { name, description, startDate, dueDate, noteToClient, clientEmail } =
       req.body;
 
-    // Check if the user is an admin (assuming you have the isAdmin middleware applied)
+    // Check if the user is an admin
     if (!req.isAuthenticated() || req.user.isAdmin === false) {
       return res
         .status(403)
@@ -100,7 +99,7 @@ const createProject = async (req, res) => {
 const assignTechniciansToProject = async (req, res) => {
   const techniciansToAssign = req.body.userIds;
 
-  // Include explicit projectId and userId values when creating records
+  // Creating records
   const assignments = techniciansToAssign.map((userId) => {
     return {
       projectId: req.params.projectId,
@@ -148,7 +147,7 @@ const assignTechniciansToProject = async (req, res) => {
       include: [
         {
           model: Project,
-          as: "assignedTechnicians", // Correct alias here
+          as: "assignedTechnicians", // alias
           attributes: ["id", "name", "status"],
           through: { attributes: [] }, // Exclude join table fields
           where: {
@@ -165,28 +164,6 @@ const assignTechniciansToProject = async (req, res) => {
           "Technician has overdue projects. Close them before assigning new projects.",
       });
     }
-
-    // Check if any overdue projects are assigned to the technicians
-    // const overdueProjects = await Project.findAll({
-    //   where: {
-    //     dueDate: { [Op.lt]: new Date() },
-    //     status: { [Op.ne]: "Closed" },
-    //   },
-    //   include: [
-    //     {
-    //       model: User,
-    //       as: "assignedTechnicians",
-    //       where: { id: { [Op.in]: userIds } },
-    //     },
-    //   ],
-    // });
-
-    // if (overdueProjects.length > 0) {
-    //   return res.status(400).json({
-    //     message:
-    //       "Technician has overdue projects. Close them before assigning new projects.",
-    //   });
-    // }
 
     // Assign users to the project without specifying IDs
     await ProjectAssignment.bulkCreate(assignments);
@@ -210,7 +187,7 @@ const assignTechniciansToProject = async (req, res) => {
   }
 };
 
-// Function to view all projects
+// View all projects
 const getAllProjects = async (req, res) => {
   // Pagination
   let page = parseInt(req.query.page);
@@ -404,7 +381,7 @@ const updateProject = async (req, res) => {
       include: [
         {
           model: Project,
-          as: "assignedTechnicians", // Correct alias here
+          as: "assignedTechnicians", // alias 
           attributes: ["id", "name", "status"],
           through: { attributes: [] }, // Exclude join table fields
           where: {
@@ -475,7 +452,7 @@ const updateProject = async (req, res) => {
       },
     });
 
-    // Manually remove the ProjectAssignment field from the response
+    // Remove the ProjectAssignment field from the response
     const sanitizedProject = JSON.parse(JSON.stringify(updatedProject));
     sanitizedProject.assignedTechnicians.forEach((technician) => {
       delete technician.ProjectAssignment;
@@ -633,7 +610,7 @@ const searchProjects = async (req, res) => {
     }
 
     if (status) {
-      whereClause.status = status; // Use the provided status directly
+      whereClause.status = status; 
     }
 
     const user = req.isAuthenticated() ? req.user : null;
@@ -703,7 +680,7 @@ const deleteProject = async (req, res) => {
   try {
     const projectId = req.params.projectId;
 
-    // Check if the user is an admin (assuming you have the isAdmin middleware applied)
+    // Check if the user is an admin 
     if (!req.isAuthenticated() || req.user.isAdmin === false) {
       return res
         .status(403)

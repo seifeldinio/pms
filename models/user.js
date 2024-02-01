@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
 
     // to generate the token
     generateToken() {
-      // You may use a library like jsonwebtoken to generate the token
       const token = jwt.sign(
         { id: this.id, email: this.email, isAdmin: this.isAdmin },
         process.env.JWT_SECRET || "98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3"

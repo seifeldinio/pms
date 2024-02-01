@@ -13,11 +13,6 @@ let technician3;
 
 describe("API Endpoints Testing", () => {
   beforeAll(async () => {
-    // Synchronize Sequelize models with the database and enable logging
-    // await sequelize.sync({ force: true });
-
-    // await setupDatabase();
-
     const users = await setupDatabase();
     adminUser = users.adminUser;
     technician1 = users.technician1;
@@ -140,7 +135,7 @@ describe("API Endpoints Testing", () => {
 
   describe("POST /api/v1/projects/:projectId/assign", () => {
     it("should assign technicians to a project", async () => {
-      // Create a project and some users for testing
+      // Create a project
       const project = await Project.create({
         name: "Sample Project",
         description: "This is a sample project.",
@@ -165,7 +160,7 @@ describe("API Endpoints Testing", () => {
 
     // Additional test cases for assignTechniciansToProject endpoint - Negative Testing
     it("should return 404 if project does not exist", async () => {
-      const nonExistentProjectId = 123456; // Assuming this ID does not exist
+      const nonExistentProjectId = 123456; // this ID does not exist
 
       const response = await request
         .post(`/api/v1/projects/${nonExistentProjectId}/assign`)
@@ -247,8 +242,7 @@ describe("API Endpoints Testing", () => {
         clientEmail: "seif@bloxat.com",
       });
 
-      // Assign the project to the non-admin user
-      // You should use your application's logic for assigning projects to users
+      // Assign the project to the non-admin user (technician)
       const assignResponse = await request
         .post(`/api/v1/projects/${project.id}/assign`)
         .set("Authorization", `Bearer ${adminUser.generateToken()}`)
@@ -271,7 +265,7 @@ describe("API Endpoints Testing", () => {
     });
 
     it("should return a 404 status for a project not found", async () => {
-      const nonExistentProjectId = 123456; // Assuming this ID does not exist
+      const nonExistentProjectId = 123456; // this ID does not exist
 
       const response = await request
         .get(`/api/v1/projects/${nonExistentProjectId}`)

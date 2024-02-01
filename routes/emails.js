@@ -1,13 +1,12 @@
 // Routes for project-related operations
-
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const emailsController = require("../controllers/emailsController"); // Adjust the path based on your project structure
+const emailsController = require("../controllers/emailsController"); 
 
 const { isAdmin } = require("../middlewares/authentication");
 
-// Manually send email
+// Manually send reminder email
 router.post(
   "/send-email/:projectId",
   passport.authenticate("jwt", { session: false }),
@@ -33,7 +32,7 @@ router.get(
 
 module.exports = router;
 
-// DOCUMENTATION
+// SWAGGER DOCUMENTATION
 
 /**
  * @swagger

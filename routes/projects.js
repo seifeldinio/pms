@@ -1,16 +1,14 @@
 // Routes for project-related operations
-
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const projectController = require("../controllers/projectController"); // Adjust the path based on your project structure
-const commentController = require("../controllers/commentController"); // Adjust the path based on your project structure
+const projectController = require("../controllers/projectController");
+const commentController = require("../controllers/commentController");
 const limiter = require("../middlewares/rateLimiter");
 
 const { isAdmin } = require("../middlewares/authentication");
 
 // Create a new project
-// Apply isAdmin middleware
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -91,7 +89,7 @@ router.get(
 
 module.exports = router;
 
-// DOCUMENTATION
+// SWAGGER DOCUMENTATION
 
 /**
  * @swagger

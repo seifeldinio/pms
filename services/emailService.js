@@ -1,11 +1,6 @@
 // Service for sending emails
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const {
-  // findUpcomingProjects,
-  // generateSharedLinkToken,
-  // recordSentEmail,
-} = require("./projectService");
 
 const transporter = nodemailer.createTransport({
   //   secure: false,
@@ -36,15 +31,5 @@ async function sendReminderEmail(to, projectName, sharedLinkToken) {
   return transporter.sendMail(mailOptions);
 }
 
-// async function sendEmail(to, subject, text) {
-//   const mailOptions = {
-//     from: "test@bloxat.app",
-//     to: to,
-//     subject: subject,
-//     text: text,
-//   };
-
-//   return transporter.sendMail(mailOptions);
-// }
 
 module.exports = { sendReminderEmail };

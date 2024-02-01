@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const { sequelize } = require("../app"); // Adjust the path based on your project structure
-const { User } = require("../models"); // Adjust the path based on your project structure
+const { sequelize } = require("../app");
+const { User } = require("../models");
 
 const setupDatabase = async () => {
   // checks the database connectivity
@@ -19,9 +19,6 @@ const setupDatabase = async () => {
     .then(() => {
       console.log("Database synced");
     });
-
-  // Mock Sequelize model methods
-  // jest.spyOn(User, "findOne").mockResolvedValue(null);
 
   // Create the admin user
   const hashedPassword = await bcrypt.hash("123456", 10);

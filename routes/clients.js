@@ -6,7 +6,7 @@ const clientController = require("../controllers/clientController");
 
 const { isAdmin } = require("../middlewares/authentication");
 
-// Get project by link
+// View project by link
 router.get("/:sharedLinkToken", clientController.getProjectBysharedLinkToken);
 
 // Create client
@@ -51,7 +51,7 @@ router.delete(
 
 module.exports = router;
 
-// DOCUMENTATION
+// SWAGGER DOCUMENTATION
 
 /**
  * @swagger

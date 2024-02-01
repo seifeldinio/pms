@@ -18,7 +18,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000", // Adjust as needed
+    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
     credentials: true,
   })
 );
@@ -27,10 +27,10 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Set up Sequelize store for sessions
+// Sequelize store for sessions
 const sessionStore = new SequelizeStore({
   db: sequelize,
-  expiration: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds
+  expiration: 24 * 60 * 60 * 1000, // (24 hours) Session expiration time in milliseconds
 });
 
 app.use(
@@ -40,18 +40,10 @@ app.use(
     saveUninitialized: false,
     store: sessionStore,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds
+      maxAge: 24 * 60 * 60 * 1000, // (24 hours) Session expiration time in milliseconds
     },
   })
 );
-
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET || "rRsVATpDIXruYB1VJWcv8SMBp1hesNno",
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
 
 // Initialize passport and use the middleware
 app.use(passport.initialize());
@@ -71,6 +63,8 @@ app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
 // Database synchronization (create tables)
+// To force synchronization in development or testing: NODE_ENV=test
+// To disable force synchronization: NODE_ENV=production
 sequelize
   .sync({ force: process.env.NODE_ENV === "test", charset: "utf8mb4" })
   .then(() => {

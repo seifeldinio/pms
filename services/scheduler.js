@@ -20,7 +20,6 @@ const start = () => {
             startDate: {
               [Op.gte]: today,
             },
-            // status: "Open",
           },
           include: [
             {

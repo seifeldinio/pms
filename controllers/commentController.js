@@ -1,6 +1,5 @@
 // Controllers for comment operations
-
-const { Comment, User, Project, ProjectAssignment } = require("../models"); // Adjust the path as needed
+const { Comment, Project, ProjectAssignment } = require("../models");
 const passport = require("passport");
 
 const postComment = async (req, res) => {

@@ -39,7 +39,7 @@ passport.use(
   })
 );
 
-// Custom authentication function
+// Authentication function
 const authenticateUser = async (email, password) => {
   try {
     const user = await User.findOne({ where: { email } });
@@ -54,11 +54,11 @@ const authenticateUser = async (email, password) => {
       isAdmin: user.isAdmin, // Include isAdmin in the payload
     };
   } catch (error) {
-    return null; // Error during authentication
+    return null; 
   }
 };
 
-// Custom function to generate a JWT token
+// Generate a JWT token
 const generateToken = (user) => {
   const payload = {
     id: user.id,

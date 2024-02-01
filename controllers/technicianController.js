@@ -1,10 +1,8 @@
 // Controllers for technician-related operations
-
 const { Op } = require("sequelize");
-const { User, Project, ProjectAssignment } = require("../models");
-const bcrypt = require("bcrypt");
+const { User, Project } = require("../models");
 
-// Function to create a new technician user
+// Create a new technician user
 const createTechnician = async (req, res) => {
   try {
     // Extract necessary information from the request body
@@ -16,12 +14,11 @@ const createTechnician = async (req, res) => {
       return res.status(400).json({ message: "Email is already in use" });
     }
 
-    // Create the new user with the type 'technician'
+    // Create the new user (isAdmin: false by default)
     const newTechnician = await User.create({
       email,
       password,
       name,
-      // isAdmin: false, // It's false by default
     });
 
     // Exclude sensitive information from the response
@@ -42,7 +39,7 @@ const createTechnician = async (req, res) => {
   }
 };
 
-// Function to get all technicians
+// Get all technicians
 const getAllTechnicians = async (req, res) => {
   // Pagination
   let page = parseInt(req.query.page);
@@ -54,7 +51,7 @@ const getAllTechnicians = async (req, res) => {
       // pagination
       limit: per_page,
       offset: offset,
-      where: { isAdmin: false }, // Exclude administrators
+      where: { isAdmin: false }, // Exclude admins
       attributes: ["id", "email", "name"],
     });
 
@@ -68,7 +65,7 @@ const getAllTechnicians = async (req, res) => {
   }
 };
 
-// Function to get a single technician by ID
+// Get a single technician by ID
 const getTechnicianById = async (req, res) => {
   try {
     const technicianId = req.params.technicianId;
@@ -107,7 +104,7 @@ const getTechnicianById = async (req, res) => {
   }
 };
 
-// Function to update a technician by ID
+// Update a technician by ID
 const updateTechnician = async (req, res) => {
   try {
     const technicianId = req.params.technicianId;
@@ -199,7 +196,7 @@ const getTechniciansWithOverdueProjects = async (req, res) => {
       include: [
         {
           model: Project,
-          as: "assignedTechnicians", // Use "assignedTechnicians" as the alias
+          as: "assignedTechnicians", // alias
           attributes: ["id", "name", "status"],
           through: { attributes: [] },
           where: {

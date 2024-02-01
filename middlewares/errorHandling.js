@@ -1,6 +1,6 @@
 function notFound(req, res, next) {
   if (req.originalUrl === "/") {
-    // If the request is for the root route, provide a welcome message with links
+    // If the request is for the root route -> provide a welcome message
     const welcomeMessage = `
       Welcome to the Project Management System API! 👷<br><br>
       Explore the API Documentation: <a href="/api-docs" target="_blank">API Documentation</a><br>
@@ -8,7 +8,7 @@ function notFound(req, res, next) {
     `;
     res.send(welcomeMessage);
   } else {
-    // If the request is for any other route, return a 404 error
+    // If the request is for any other route -> return a 404 error
     res.status(404);
     const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
     next(error);

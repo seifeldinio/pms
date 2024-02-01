@@ -8,26 +8,22 @@
 
 ## 📖 Table of Contents
 
-- [Project Overview](#project-overview)
-- [✅ Prerequisites](#-prerequisites)
-- [🚀 Getting Started](#-getting-started)
-- [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
-- [⚙️ Database Configuration](#️-database-configuration)
-  - [🔨 Development Configuration](#-development-configuration)
-  - [🧪 Test Configuration](#-test-configuration)
-  - [🌐 Production Configuration](#-production-configuration)
-- [✨ Database Schema](#-database-schema)
-- [📝 API Documentation](#-api-documentation)
-- [📝 Postman Collection](#-postman-collection)
-- [👉 Server Deployment](#-server-deployment)
-- [🧪 Running Tests](#-running-tests)
-- [🧪 Testing Scenarios](#-testing-scenarios)
-  - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
-  - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
-  - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
-  - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
-- [Technologies Used](#technologies-used)
-  - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
+  - [Project Overview](#project-overview)
+  - [✅ Prerequisites](#-prerequisites)
+  - [🚀 Getting Started](#-getting-started)
+  - [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
+  - [✨ Database Schema](#-database-schema)
+  - [📝 API Documentation](#-api-documentation)
+  - [📝 Postman Collection](#-postman-collection)
+  - [👉 Server Deployment](#-server-deployment)
+  - [🧪 Running Tests](#-running-tests)
+  - [🧪 Testing Scenarios](#-testing-scenarios)
+    - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
+    - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
+    - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
+    - [Retrieve a Project by ID (GET /api/v1/projects/:projectId)](#retrieve-a-project-by-id-get-apiv1projectsprojectid)
+  - [Technologies Used](#technologies-used)
+    - [Note 🙌: Why Sequelize ORM?](#note--why-sequelize-orm)
 
 ## Project Overview
 
@@ -123,9 +119,62 @@ Adjust this value as needed:
 
 - To disable force synchronization: `NODE_ENV=production`
 
----
 
-5. 🐬 **Run database migrations:**
+
+5. 🐬 **Database configuration:**
+
+Before running the migrations, make sure to configure your database settings in the `config/config.json` file. Here's an example configuration for development, testing, and production environments:
+
+````json
+{
+  "development": {
+    "username": "root",
+    "password": "admin1234",
+    "database": "pms_db",
+    "host": "localhost",
+    "port": "3308",
+    "dialect": "mysql",
+    "logging": true,
+    "dialectOptions": {
+      "charset": "utf8mb4"
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "admin1234",
+    "database": "pms_db",
+    "host": "localhost",
+    "port": "3308",
+    "dialect": "mysql",
+    "logging": false,
+    "dialectOptions": {
+      "charset": "utf8mb4"
+    }
+  },
+  "production": {
+    "username": "your_production_username",
+    "password": "your_production_password",
+    "database": "your_production_database",
+    "host": "your_production_host",
+    "port": "3306",
+    "dialect": "mysql",
+    "logging": false,
+    "define": {
+      "charset": "utf8mb4"
+    },
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      },
+      "charset": "utf8mb4"
+    },
+    "ssl": true
+  }
+}
+````
+
+
+6. 🐬 **Run database migrations:**
 
 ```bash
 
@@ -135,9 +184,9 @@ sequelize db:migrate
 
 
 
-```
+````
 
-6. **Seed the database with an admin user:**
+7. **Seed the database with an admin user:**
 
 ```bash
 
@@ -165,7 +214,7 @@ Make sure to include these details in the body of your request.
 
 ⚠️ **Make sure to change the password immediately after logging in for security reasons.** (Password changing to be implemented in the future.)
 
-7. 🚀 **Start the application:**
+8. 🚀 **Start the application:**
 
 ```bash
 
@@ -189,7 +238,7 @@ npm start
 
 ```
 
-8. **Access the application at [http://localhost:3000](http://localhost:3000).**
+9. **Access the application at [http://localhost:3000](http://localhost:3000).**
 
 ## 🐬 Database Migration and Seeding for Production
 
@@ -216,60 +265,6 @@ yarn start --production
 ```
 
 ---
-
-## ⚙️ Database Configuration
-
-The database configuration for the Project Management System API is defined in the `config/config.json` file. This file contains separate configurations for development, test, and production environments. You can customize the database connection settings based on your requirements.
-
-### 🔨 Development Configuration
-
-For development purposes, the configuration includes:
-
-- **Username:** root
-
-- **Password:** admin1234
-
-- **Database Name:** pms_db
-
-- **Host:** localhost
-
-- **Port:** 3308
-
-- **Dialect:** mysql
-
-- **Logging:** Enabled
-
-- **Character Set:** utf8mb4
-
-### 🧪 Test Configuration
-
-The test environment uses the same configuration as development, with the only difference being that logging is turned off to reduce noise during testing.
-
-### 🌐 Production Configuration
-
-In a production environment, the configuration is optimized for security and performance. It includes:
-
-- **Username:** [Your Production Username]
-
-- **Password:** [Your Production Password]
-
-- **Database Name:** [Your Production Database Name]
-
-- **Host:** [Your Host]
-
-- **Port:** 3306
-
-- **Dialect:** mysql
-
-- **Logging:** Disabled
-
-- **Character Set:** utf8mb4
-
-- **SSL:** Enabled with additional options for secure communication
-
-Please ensure to modify the production configuration with the appropriate credentials and settings for your deployment.
-
-⚠️ **Note:** It is crucial to handle production credentials securely and follow best practices for database connection security.
 
 ## ✨ Database Schema
 

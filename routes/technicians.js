@@ -1,5 +1,4 @@
 // Routes for technician-related operations
-
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -57,7 +56,7 @@ router.delete(
 
 module.exports = router;
 
-// DOCUMENTATION
+// SWAGGER DOCUMENTATION
 
 /**
  * @swagger

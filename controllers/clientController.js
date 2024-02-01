@@ -1,18 +1,7 @@
 // Controllers for client-related operations
+const { Project, Client } = require("../models");
 
-const { Op } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
-const {
-  Project,
-  User,
-  ProjectAssignment,
-  Client,
-  SentEmail,
-} = require("../models");
-const { sendReminderEmail } = require("../services/emailService");
-const { recordSentEmail } = require("../services/projectService");
-
-// Get project by sharedLinkToken
+// View project by sharedLinkToken
 const getProjectBysharedLinkToken = async (req, res) => {
   try {
     const sharedLinkToken = req.params.sharedLinkToken;
@@ -82,7 +71,7 @@ const createClient = async (req, res) => {
   }
 };
 
-// Controller function to get all clients
+// Get all clients
 const getAllClients = async (req, res) => {
   // Pagination
   let page = parseInt(req.query.page);
@@ -190,7 +179,7 @@ const deleteClient = async (req, res) => {
 
     // Delete the client
     const deletedRowCount = await Client.destroy({
-      where: { email }, // Specify the condition to identify the client by email
+      where: { email }, // condition to identify the client by email
     });
 
     // Check if the client was found and deleted
