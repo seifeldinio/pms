@@ -1,6 +1,7 @@
 const express = require("express");
 const { passport } = require("./middlewares/authentication");
 const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { sequelize } = require("./models");
 const apiRouter = require("./routes/apiRouter");
 const middlewares = require("./middlewares/errorHandling");
@@ -26,13 +27,31 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Set up Sequelize store for sessions
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+  expiration: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds
+});
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "rRsVATpDIXruYB1VJWcv8SMBp1hesNno",
     resave: false,
     saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // Session expiration time in milliseconds
+    },
   })
 );
+
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || "rRsVATpDIXruYB1VJWcv8SMBp1hesNno",
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
 // Initialize passport and use the middleware
 app.use(passport.initialize());

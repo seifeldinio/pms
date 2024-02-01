@@ -8,12 +8,16 @@ let cronJobPromise;
 
 const start = () => {
   cronJobPromise = new Promise((resolve) => {
-    //     cronJob = cron.schedule("0 0 * * *", async () => {
-    cronJob = cron.schedule("0 21 * * *", async () => {
+    cronJob = cron.schedule("0 0 * * *", async () => {
       try {
+        const today = new Date();
+
+        // Find projects with start date equals to today
         const upcomingProjects = await Project.findAll({
           where: {
-            startDate: { [Op.lt]: new Date() },
+            startDate: {
+              [Op.eq]: today,
+            },
             status: "Open",
           },
           include: [
@@ -24,6 +28,20 @@ const start = () => {
             },
           ],
         });
+
+        // const upcomingProjects = await Project.findAll({
+        //   where: {
+        //     startDate: { [Op.lt]: new Date() },
+        //     status: "Open",
+        //   },
+        //   include: [
+        //     {
+        //       model: Client,
+        //       as: "client",
+        //       attributes: ["email"],
+        //     },
+        //   ],
+        // });
 
         for (const project of upcomingProjects) {
           const clientEmail = project.client.email;
