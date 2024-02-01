@@ -379,6 +379,7 @@ module.exports = router;
  *       Only admins (users with isAdmin: true) can update a project.
  *       - If a technician has overdue projects (projects with a due date in the past and status not Closed),
  *         they cannot be assigned to new projects until all overdue projects are Closed.
+ *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required
@@ -554,8 +555,7 @@ module.exports = router;
  *       This endpoint allows users to post comments on a specific project.
  *       - Admins (users with isAdmin: true) can comment on all projects.
  *       - Technicians (users with isAdmin: false) can provide comments on projects they are assigned to.
- *       - Users must be authenticated with a valid JWT token, and only authorized users can post comments.
- *       - The comment text is provided in the request body.
+ *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required
