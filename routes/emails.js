@@ -45,7 +45,7 @@ module.exports = router;
  * @swagger
  * /api/v1/emails/send-email/{projectId}:
  *   post:
- *     summary: Manually send an email to the client of a project
+ *     summary: Manually send reminder email to the client of a project
  *     description: |
  *         Only admins (users with isAdmin: true) are authorized to resend the notice email to the client indicating the project start.
  *     tags: [Emails]
@@ -80,7 +80,7 @@ module.exports = router;
  * @swagger
  * /api/v1/emails/project/{projectId}/sent-emails:
  *   get:
- *     summary: Get all sent emails for a project
+ *     summary: Get all sent emails for a specific project
  *     description: |
  *         Only admins (users with isAdmin: true) are authorized to retrieve all the sent emails sent to a specific client of the project.
  *     tags: [Emails]

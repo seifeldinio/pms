@@ -64,7 +64,7 @@ module.exports = router;
  * @swagger
  * /api/v1/projects/{sharedLinkToken}:
  *   get:
- *     summary: Get project by link
+ *     summary: View project by client link
  *     description: |
  *       - Retrieve project details using the shared link token.
  *       - This shared link to clients will only allow clients to view certain fields (name, description, start date, status, Note to clients).

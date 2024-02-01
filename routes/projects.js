@@ -379,7 +379,6 @@ module.exports = router;
  *       Only admins (users with isAdmin: true) can update a project.
  *       - If a technician has overdue projects (projects with a due date in the past and status not Closed),
  *         they cannot be assigned to new projects until all overdue projects are Closed.
- *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required
@@ -436,6 +435,7 @@ module.exports = router;
  *     description: |
  *       - Admins (users with isAdmin: true) can update a project's status to any of these values (Open, In Progress, Completed, Closed or Rejected).
  *       - Technicians (users with isAdmin: false by default) can update a project status to (Open, In Progress, Completed) only.
+ *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required

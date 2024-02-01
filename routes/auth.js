@@ -59,6 +59,11 @@ module.exports = router;
  * /api/v1/auth/login:
  *   post:
  *     summary: Authenticate and obtain a Bearer token
+ *     description: |
+ *       - Upon successful login, the API will provide a token that must be included in the Authorization header for subsequent requests.
+ *       - The token is essential for authenticating and authorizing API access.
+ *       - ✨ User Role Determination:
+ *       - The token payload includes user information with an isAdmin field. If isAdmin is true, the user has admin privileges; if false, they are a non-admin user (technician).
  *     tags: [Authentication]
  *     requestBody:
  *       required: true
@@ -69,8 +74,10 @@ module.exports = router;
  *             properties:
  *               email:
  *                 type: string
+ *                 example: admin@gmail.com
  *               password:
  *                 type: string
+ *                 example: 123456
  *     responses:
  *       200:
  *         description: Authentication successful, Bearer token obtained
