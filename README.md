@@ -57,7 +57,8 @@ This Project Management System API provides functionality for managing projects,
 4. **Create a `.env` file in the root of the project and add the following configurations:**
 
    ```env
-   NODE_ENV=development
+   APP_PORT=3000
+   NODE_ENV=production
    JWT_SECRET=98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3
    SESSION_SECRET=1d3x0EV8rKgNgoknOf6KHQyeOGmeD20N
    MAIL_PASS=YmO&R~Ct&gB9;x<Qnq;5M7
