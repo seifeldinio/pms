@@ -8,22 +8,20 @@
 
 ## 📖 Table of Contents
 
-- [👷 Project Management System API v.1.0](#-project-management-system-api-v10)
-  - [📖 Table of Contents](#-table-of-contents)
   - [Project Overview](#project-overview)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
-  - [Database Migration and Seeding for Production](#database-migration-and-seeding-for-production)
-  - [Database Configuration](#database-configuration)
+  - [✅ Prerequisites](#-prerequisites)
+  - [🚀 Getting Started](#-getting-started)
+  - [🐬 Database Migration and Seeding for Production](#-database-migration-and-seeding-for-production)
+  - [⚙️ Database Configuration](#️-database-configuration)
     - [🔨 Development Configuration](#-development-configuration)
     - [🧪 Test Configuration](#-test-configuration)
     - [🌐 Production Configuration](#-production-configuration)
-  - [Database Schema](#database-schema)
-  - [API Documentation](#api-documentation)
-  - [Postman Collection](#postman-collection)
-  - [Server Deployment](#server-deployment)
-  - [Running Tests](#running-tests)
-  - [Testing Scenarios](#testing-scenarios)
+  - [✨ Database Schema](#-database-schema)
+  - [📝 API Documentation](#-api-documentation)
+  - [📝 Postman Collection](#-postman-collection)
+  - [👉 Server Deployment](#-server-deployment)
+  - [🧪 Running Tests](#-running-tests)
+  - [🧪 Testing Scenarios](#-testing-scenarios)
     - [Create a New Project (POST /api/v1/projects)](#create-a-new-project-post-apiv1projects)
     - [Assign Technicians to a Project (POST /api/v1/projects/:projectId/assign)](#assign-technicians-to-a-project-post-apiv1projectsprojectidassign)
     - [Retrieve All Projects (GET /api/v1/projects)](#retrieve-all-projects-get-apiv1projects)
@@ -35,7 +33,7 @@
 
 This Project Management System API provides functionality for managing projects, technicians, and clients. It enables admins to perform actions such as creating, updating, and deleting projects, assigning technicians, managing technicians, and interacting with clients. Technicians can view and update assigned projects, while clients receive shared links to view specific project details.
 
-## Prerequisites
+## ✅ Prerequisites
 
 - ✅ [Node.js](https://nodejs.org/) installed
 
@@ -47,7 +45,7 @@ This Project Management System API provides functionality for managing projects,
 
 - ✅ [Sequelize CLI](https://github.com/sequelize/cli) version 6.35.2 installed globally: `npm install -g sequelize-cli`
 
-## Getting Started
+## 🚀 Getting Started
 
 1. **Clone the repository:**
 
@@ -199,7 +197,7 @@ npm start
 
 8. **Access the application at [http://localhost:3000](http://localhost:3000).**
 
-## Database Migration and Seeding for Production
+## 🐬 Database Migration and Seeding for Production
 
 To perform database migration and seeding using the production Sequelize configuration, follow these commands:
 
@@ -225,7 +223,7 @@ yarn start --production
 
 ---
 
-## Database Configuration
+## ⚙️ Database Configuration
 
 The database configuration for the Project Management System API is defined in the `config/config.json` file. This file contains separate configurations for development, test, and production environments. You can customize the database connection settings based on your requirements.
 
@@ -279,25 +277,25 @@ Please ensure to modify the production configuration with the appropriate creden
 
 ⚠️ **Note:** It is crucial to handle production credentials securely and follow best practices for database connection security.
 
-## Database Schema
+## ✨ Database Schema
 
 ![diagram.png](./diagram.png)
 
 ---
 
-## API Documentation
+## 📝 API Documentation
 
 [Link to Swagger API Documentation](https://pms-wkupx.ondigitalocean.app/api-docs/)
 
-## Postman Collection
+## 📝 Postman Collection
 
 [Link to Postman Collection](https://www.postman.com/seiifroboot/workspace/apis/collection/15911527-924df702-f582-40f2-9d49-570bd429bbfd?action=share&creator=15911527)
 
-## Server Deployment
+## 👉 Server Deployment
 
 [Link to Server Deployment](https://pms-wkupx.ondigitalocean.app/)
 
-## Running Tests
+## 🧪 Running Tests
 
 Before running tests, make sure to set the `NODE_ENV` environment variable to `test` in the `.env` file. This ensures that the tests use the test environment configuration.
 
@@ -337,7 +335,7 @@ yarn test
 
 This command will execute the tests and provide feedback on their success or failure. The testing environment is isolated, and breaking changes won't affect the production environment.
 
-## Testing Scenarios
+## 🧪 Testing Scenarios
 
 The API endpoints have been thoroughly tested to ensure proper functionality and handle various scenarios.
 👇 Below are the scenarios covered in the testing process:
