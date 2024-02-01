@@ -4,7 +4,7 @@ function notFound(req, res, next) {
     const welcomeMessage = `
       Welcome to the Project Management System API! 👷<br><br>
       Explore the API Documentation: <a href="/api-docs" target="_blank">API Documentation</a><br>
-      Test the API using Postman: <a href="/postman-collection" target="_blank">Postman Collection</a>
+      Test the API using Postman: <a href="https://www.postman.com/seiifroboot/workspace/apis/collection/15911527-924df702-f582-40f2-9d49-570bd429bbfd?action=share&creator=15911527" target="_blank">Postman Collection</a>
     `;
     res.send(welcomeMessage);
   } else {

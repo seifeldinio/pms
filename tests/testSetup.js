@@ -3,7 +3,25 @@ const { sequelize } = require("../app"); // Adjust the path based on your projec
 const { User } = require("../models"); // Adjust the path based on your project structure
 
 const setupDatabase = async () => {
-  await sequelize.sync({ force: true });
+  // checks the database connectivity
+  await sequelize
+    .authenticate()
+    .then(() => {
+      console.log("Connection has been established successfully.");
+    })
+    .catch((err) => {
+      console.error("Unable to connect to the database:", err);
+    });
+
+  // Clear all tables
+  await sequelize
+    .sync({ force: true, alter: true, charset: "utf8mb4" })
+    .then(() => {
+      console.log("Database synced");
+    });
+
+  // Mock Sequelize model methods
+  // jest.spyOn(User, "findOne").mockResolvedValue(null);
 
   // Create the admin user
   const hashedPassword = await bcrypt.hash("123456", 10);

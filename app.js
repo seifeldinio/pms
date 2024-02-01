@@ -53,18 +53,10 @@ app.use(middlewares.errorHandler);
 
 // Database synchronization (create tables)
 sequelize
-  .sync({ force: process.env.NODE_ENV === "development", charset: "utf8mb4" })
+  .sync({ force: process.env.NODE_ENV === "test", charset: "utf8mb4" })
   .then(() => {
     console.log("Database synced");
   });
-
-// sequelize.sync({ force: process.env.NODE_ENV === "development" }).then(() => {
-//   console.log("Database synced");
-// });
-
-// sequelize.sync({ force: false }).then(() => {
-//   console.log("Database synced");
-// });
 
 // Start the server
 const APP_PORT = process.env.APP_PORT || 3000;

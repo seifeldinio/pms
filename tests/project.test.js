@@ -13,7 +13,11 @@ let technician3;
 
 describe("API Endpoints Testing", () => {
   beforeAll(async () => {
-    await sequelize.sync({ force: true });
+    // Synchronize Sequelize models with the database and enable logging
+    // await sequelize.sync({ force: true });
+
+    // await setupDatabase();
+
     const users = await setupDatabase();
     adminUser = users.adminUser;
     technician1 = users.technician1;

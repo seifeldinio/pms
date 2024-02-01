@@ -19,25 +19,19 @@ module.exports = (sequelize, DataTypes) => {
       try {
         return bcrypt.compareSync(password, this.password);
       } catch (error) {
-        // Handle bcrypt comparison error
         console.error("Error comparing passwords:", error);
-        return false;
+        throw new Error("Error comparing passwords");
       }
     }
 
     // to generate the token
     generateToken() {
-      const secret =
-        process.env.JWT_SECRET || "98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3";
-
       // You may use a library like jsonwebtoken to generate the token
       const token = jwt.sign(
         { id: this.id, email: this.email, isAdmin: this.isAdmin },
-        secret
-        // {
-        //   expiresIn: "1h", // adjust the expiration as needed
-        // }
+        process.env.JWT_SECRET || "98tBdNTt6RCPjeLQbQgVwjLgDMUlunA3"
       );
+
       return token;
     }
   }

@@ -9,6 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      projectId: {
+        type: Sequelize.INTEGER,
+        // allowNull: false,
+        get() {
+          return this.id;
+        },
+      },
       name: {
         type: Sequelize.STRING(191), // Limit the size to 191 characters
         allowNull: false,
