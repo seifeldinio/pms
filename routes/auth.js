@@ -61,6 +61,7 @@ module.exports = router;
  *     summary: Authenticate and obtain a Bearer token
  *     description: |
  *       - Upon successful login, the API will provide a token that must be included in the Authorization header for subsequent requests.
+ *       - All routes require authentication, except GET /api/v1/projects/:sharedLinkToken, which is accessible for clients without login.
  *       - The token is essential for authenticating and authorizing API access.
  *       - ✨ User Role Determination:
  *       - The token payload includes user information with an isAdmin field. If isAdmin is true, the user has admin privileges; if false, they are a non-admin user (technician).
