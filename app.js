@@ -10,6 +10,7 @@ const cors = require("cors");
 const compression = require("compression");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./utils/swaggerDef");
+const limiter = require("./middlewares/rateLimiter");
 
 require("dotenv").config();
 
@@ -58,10 +59,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Start the scheduler
 scheduler.start();
 
-// Error handling middleware
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-
 // Database synchronization (create tables)
 // To force synchronization in development or testing: NODE_ENV=test
 // To disable force synchronization: NODE_ENV=production
@@ -70,6 +67,13 @@ sequelize
   .then(() => {
     console.log("Database synced");
   });
+
+// Rate Limiter
+app.use(limiter);
+
+// Error handling middleware
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
 
 // Start the server
 const APP_PORT = process.env.APP_PORT || 3000;
