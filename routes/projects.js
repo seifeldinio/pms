@@ -57,7 +57,7 @@ router.put(
 router.put(
   "/:projectId/status",
   passport.authenticate("jwt", { session: false }),
-  limiter,
+  // limiter,
   projectController.updateProjectStatus
 );
 
@@ -75,7 +75,7 @@ router.delete(
 router.post(
   "/post/comment",
   passport.authenticate("jwt", { session: false }),
-  limiter,
+  // limiter,
   commentController.postComment
 );
 
@@ -435,7 +435,6 @@ module.exports = router;
  *     description: |
  *       - Admins (users with isAdmin: true) can update a project's status to any of these values (Open, In Progress, Completed, Closed or Rejected).
  *       - Technicians (users with isAdmin: false by default) can update a project status to (Open, In Progress, Completed) only.
- *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required
@@ -555,7 +554,6 @@ module.exports = router;
  *       This endpoint allows users to post comments on a specific project.
  *       - Admins (users with isAdmin: true) can comment on all projects.
  *       - Technicians (users with isAdmin: false) can provide comments on projects they are assigned to.
- *       - Rate Limit: 100 requests per 15 minutes
  *     tags: [Projects]
  *     security:
  *       - bearerAuth: []  # Bearer token is required
