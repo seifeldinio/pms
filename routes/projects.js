@@ -73,7 +73,7 @@ router.delete(
 // Admin can add comments
 // Technicians can add comments (To their assigned projects only)
 router.post(
-  "/:projectId/comment",
+  "/comment",
   passport.authenticate("jwt", { session: false }),
   limiter,
   commentController.postComment
@@ -548,7 +548,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/v1/projects/{projectId}/comment:
+ * /api/v1/projects/comment:
  *   post:
  *     summary: Post a comment on a project
  *     description: |
